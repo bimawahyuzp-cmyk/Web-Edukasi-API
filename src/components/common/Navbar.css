@@ -1,0 +1,64 @@
+.navbar {
+  width: 100%;
+  height: 80px;
+  max-height: 80px;
+  background-color: white;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.navbar--full {
+  justify-content: space-between;
+}
+
+.navbar--simple {
+  justify-content: flex-start;
+}
+
+.navbar--simple .logo {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+.navbar--full .logo {
+  height: 60px;
+  width: auto;
+}
+
+.menu-kanan {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.kategori {
+  height: 18px;
+  width: auto;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .kategori,
+  .avatar {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}

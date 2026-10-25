@@ -1,0 +1,54 @@
+.btn {
+  width: 100%;
+  display: block;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.btn--primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: #357abd;
+}
+
+.btn--google {
+  background-color: #e4e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+}
+
+.btn--secondary {
+  background-color: #e4e3e3;
+  color: #333;
+}
+
+.btn--secondary:hover {
+  background-color: #d4d3d3;
+}
+
+.btn--danger {
+  background-color: #dc2626;
+  color: white;
+}
+
+.btn--danger:hover {
+  background-color: #b91c1c;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
