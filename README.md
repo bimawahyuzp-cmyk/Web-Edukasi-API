@@ -1,61 +1,74 @@
-# Web Edukasi - React
+# Web Edukasi - React + MockAPI
 
-Hasil konversi project HTML/CSS statis (Web Edukasi) menjadi ReactJS
-component-based, sesuai guideline: slicing UI per component, reusable
-component dengan props, dan responsive.
+Aplikasi video pembelajaran berbasis ReactJS (Vite). Data video diambil dari
+MockAPI lewat Axios, dengan fitur GET, ADD, UPDATE, dan DELETE.
+
+## Fitur
+
+- Menampilkan daftar video dari API (GET)
+- Menambah video lewat tombol **+ Tambah video** (ADD)
+- Mengubah video lewat tombol **Edit** di kartu (UPDATE)
+- Menghapus video lewat tombol **Hapus** di kartu (DELETE)
+- Filter berdasarkan kategori
+- Tampilan loading, error, dan data kosong
 
 ## Struktur Project
 
 ```
 src/
 ├── components/
-│   ├── common/         -> Navbar, Button, FormInput (dipakai di banyak halaman)
-│   ├── auth/            -> AuthCard (bungkus card Login & Register)
-│   └── home/            -> HeroBanner, CourseSection, CourseCard,
-│                           NewsletterForm, Footer (khusus Homepage)
-├── pages/
-│   ├── Login.jsx
-│   ├── Register.jsx
-│   └── Homepage.jsx
-├── App.jsx              -> routing (react-router-dom)
+│   ├── common/    -> Navbar, Button, FormInput
+│   ├── auth/      -> AuthCard
+│   └── home/      -> HeroBanner, CourseSection, CourseCard,
+│                     VideoFormModal, NewsletterForm, Footer
+├── hooks/
+│   └── useVideos.js          -> custom hook: state + operasi CRUD
+├── services/
+│   └── api/
+│       ├── axiosInstance.js  -> konfigurasi Axios + interceptor
+│       └── videoApi.js       -> fungsi GET, ADD, UPDATE, DELETE
+├── pages/         -> Homepage, Login, Register
+├── App.jsx
 └── main.jsx
-public/
-└── assets/              -> taruh semua gambar di sini (lihat README.txt di dalamnya)
 ```
+
+## Setup MockAPI
+
+1. Buat project di https://mockapi.io dengan API Prefix `/api/v1`.
+2. Buat resource `videos` dengan field (semua String):
+   - `title`
+   - `thumbnail`
+   - `category`
+3. Salin Base URL project, bentuknya `https://xxxx.mockapi.io/api/v1`.
 
 ## Cara Menjalankan
 
-1. Pastikan sudah punya Node.js terinstall.
-2. Install dependencies:
+1. Install dependency:
    ```
    npm install
    ```
-3. Copy semua gambar dari project lama kamu (folder `assets`) ke
-   `public/assets/` di project ini (lihat `public/assets/README.txt`).
-4. Jalankan development server:
+2. Salin `.env.example` menjadi `.env`, lalu isi `VITE_API_URL` dengan Base URL MockAPI.
+3. Jalankan:
    ```
    npm run dev
    ```
-5. Buka link yang muncul di terminal (biasanya http://localhost:5173).
-   - `/` -> Homepage
-   - `/login` -> Login
-   - `/register` -> Register
+4. Buka http://localhost:5173
 
-## Build untuk production
+Catatan: setiap `.env` diubah, jalankan ulang `npm run dev`.
 
+## Contoh Data Video
+
+```json
+{
+  "title": "Dasar-dasar Pemasaran Digital",
+  "thumbnail": "/assets/Card 1.png",
+  "category": "Pemasaran"
+}
 ```
-npm run build
-```
-Hasil build ada di folder `dist/`.
 
-## Catatan Reusable Component
+`thumbnail` bisa berupa URL gambar (`https://...`) atau path gambar di folder
+`public/assets`.
 
-- `FormInput`, `Button`, `Navbar` dipakai ulang di Login & Register lewat props
-  (label, type, placeholder, value, onChange, variant, dll) - tidak ada
-  hardcode di dalam component-nya.
-- `CourseSection` + `CourseCard` di Homepage bersifat data-driven: daftar
-  kategori dan daftar course dikirim sebagai array lewat props dari
-  `Homepage.jsx`, jadi kalau mau nambah/kurangi course tinggal ubah array-nya
-  saja tanpa sentuh component.
-- `HeroBanner` dipakai 2x di Homepage (header judul & CTA banner) karena
-  strukturnya sama, hanya beda data yang dikirim lewat props.
+## Teknologi
+
+React 19, Vite, React Router, Axios, MockAPI.
